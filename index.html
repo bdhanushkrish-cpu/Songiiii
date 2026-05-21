@@ -1,0 +1,188 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul of Dia - Premium Web Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0d0d0d;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* ಪ್ರೀಮಿಯಂ ವೆಲ್ಕಮ್ ಸ್ಕ್ರೀನ್ */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #1a1a1a 0%, #070707 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .welcome-title {
+            color: #d4af37;
+            font-size: 32px;
+            margin-bottom: 5px;
+            letter-spacing: 4px;
+            font-weight: 300;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .welcome-subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 35px;
+            letter-spacing: 2px;
+        }
+
+        /* ರಾಯಲ್ ಗೋಲ್ಡನ್ ಬಟನ್ */
+        .enter-btn {
+            padding: 15px 45px;
+            font-size: 15px;
+            color: #000;
+            background: linear-gradient(45deg, #d4af37, #f3e5ab, #aa7c11);
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0px 5px 25px rgba(212, 175, 55, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            letter-spacing: 2px;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        /* ಮುಖ್ಯ ವೆಬ್‌ಸೈಟ್ ಕಂಟೆಂಟ್ ಸ್ಟೈಲ್ */
+        .main-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease 0.5s;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(transparent, rgba(212, 175, 55, 0.02));
+        }
+
+        .main-content.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .main-content h1 {
+            font-size: 2.8rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .main-content p {
+            font-size: 1.1rem;
+            color: #aaa;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* ಮ್ಯೂಸಿಕ್ ವೇವ್ ಅನಿಮೇಷನ್ */
+        .music-indicator {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #d4af37;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(212, 175, 55, 0.05);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .wave-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 18px;
+        }
+
+        .wave {
+            width: 3px;
+            height: 4px;
+            background-color: #d4af37;
+            animation: bounce 0.5s ease infinite alternate;
+        }
+        .wave:nth-child(2) { animation-delay: 0.15s; }
+        .wave:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes bounce {
+            0% { height: 4px; }
+            100% { height: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" src="soul-of-dia.mp3" loop></audio>
+
+    <div id="welcome-screen">
+        <h2 class="welcome-title">SOUL OF DIA</h2>
+        <p class="welcome-subtitle">Sanjith Hegde & Chinmayi Sripaada</p>
+        <button class="enter-btn" onclick="startExperience()">ENTER SITE</button>
+    </div>
+
+    <div id="main-page" class="main-content">
+        <h1>Welcome to Your Website</h1>
+        <p>ನಿಮ್ಮ ವೆಬ್‌ಸೈಟ್ ಯಶಸ್ವಿಯಾಗಿ ಲೋಡ್ ಆಗಿದೆ. ಹಿನ್ನೆಲೆಯಲ್ಲಿ "Soul of Dia" ಮಧುರವಾಗಿ ಪ್ಲೇ ಆಗುತ್ತಿದೆ...</p>
+        
+        <div class="music-indicator">
+            <div class="wave-container">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+            <span>Now Playing: Soul of Dia</span>
+        </div>
+    </div>
+
+    <script>
+        function startExperience() {
+            const music = document.getElementById('bg-music');
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const mainPage = document.getElementById('main-page');
+
+            // ಆಡಿಯೋ ಪ್ಲೇ ಮಾಡುತ್ತದೆ
+            music.play().then(() => {
+                console.log("Audio started playing successfully.");
+            }).catch((error) => {
+                console.log("Playback failed. Check file name/path:", error);
+            });
+
+            // ಸ್ಕ್ರೀನ್ ಬದಲಾಯಿಸುವ ಅನಿಮೇಷನ್
+            welcomeScreen.style.opacity = '0';
+            welcomeScreen.style.visibility = 'hidden';
+            mainPage.classList.add('show');
+        }
+    </script>
+
+</body>
+</html>
